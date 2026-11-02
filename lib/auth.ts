@@ -1,23 +1,23 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-//import { nextCookies } from "better-auth/next-js";
-//import { admin, twoFactor } from "better-auth/plugins";
+import { nextCookies } from "better-auth/next-js";
+import { admin, twoFactor } from "better-auth/plugins";
 import db from "./db";
-//import { ac, roles } from "./permissions";
-//import { sendOtpEmail } from "./send-otp-email";
-//import { sendResetPasswordEmail } from "./send-reset-password-email";
-//import { sendVerificationEmail } from "./send-verification-email";
+import { ac, roles } from "./permissions";
+import { sendOtpEmail } from "./send-otp-email";
+import { sendResetPasswordEmail } from "./send-reset-password-email";
+import { sendVerificationEmail } from "./send-verification-email";
 
 export const auth = betterAuth({
   database: prismaAdapter(db, {
     provider: "postgresql",
   }),
-  /*
+
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
 
-    sendResetPassword: async ({ _, url }) => {
+    sendResetPassword: async ({ url }) => {
       void sendResetPasswordEmail({
         to: "atiqullah.naemi21@gmail.com",
         subject: "Reset your password",
@@ -62,15 +62,15 @@ export const auth = betterAuth({
       defaultRole: "user",
       adminRoles: ["admin", "superadmin"],
     }),
-    nextCookies(),
+
     twoFactor({
       skipVerificationOnEnable: true,
       otpOptions: {
-        async sendOTP({ _, otp }) {
-          sendOtpEmail({ to: "atiqullah.naemi21@gmail.com", otp });
+        async sendOTP({ otp }) {
+          sendOtpEmail({ to: "johanrussouw490@gmail.com", otp });
         },
       },
     }),
+    nextCookies(),
   ],
-  */
 });
